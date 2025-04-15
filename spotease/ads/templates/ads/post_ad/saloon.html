@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Saloon Ad{% endblock %}
+
+{% block header %}Post Ad for Saloon{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p }}
+    </div>
+    <button class="submit-btn" type="submit">Post Ad</button>
+</form>
+{% endblock %}

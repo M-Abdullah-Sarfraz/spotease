@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Post Ad{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/postadd.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">{% block header %}Post Ad{% endblock %}</h1>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

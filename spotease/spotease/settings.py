@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework',
     'rest_framework_simplejwt',
+    'home',
+    'ads',
 ]
 
 MIDDLEWARE = [
@@ -122,12 +124,24 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+# ----------------------------------------------------------------------------
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
+
+# Add all your static directories here
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Ensure you have a 'static' folder in your project directory
+    os.path.join(BASE_DIR, 'accounts', 'static'),  # Ensure this folder exists
+    os.path.join(BASE_DIR, 'ads', 'static'),   # Ensure this folder exists
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where collectstatic collects files
+
+
+# --------------------------------------------------------------------------
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

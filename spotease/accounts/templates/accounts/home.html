@@ -1,13 +1,651 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <h1>Welcome, {{ request.user.get_full_name }}!</h1>
-    <p>You are now logged in.</p>
-    <a href="{% url 'logout' %}">Logout</a>
+    <header>
+        <div class="logo">SpotEase</div>
+        <div>
+            <input type="search" placeholder="Find spots">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <div class="categories">
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/1961190002/vector/cricket-player-design-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=6VLswpuyDvogkCbJxaTTX4ZAWmHqHrMkshUnxpaEl1U=
+            " alt="Playing Arenas">
+            <span>Playing Arenas</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/625739874/photo/heavy-weight-exercise.jpg?s=1024x1024&w=is&k=20&c=VfIOadwMezHGKt_KXrh52rlcInKHtY-Ys07p1dHs2A8="
+             alt="Gyms">
+            <span>Gyms</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/165174232/photo/farmland-with-farmhouse-and-grazing-cows-in-the-uk.jpg?s=1024x1024&w=is&k=20&c=O0g21Mqk_N0Jqxf1UBAjdQSBfKHl8aG_Ngl3zu7UsdU=" 
+            alt="Farm Houses">
+            <span>Farm Houses</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/1423513079/photo/luxury-hairdressing-and-beauty-salon-interior-with-chairs-mirrors-and-spotlights.jpg?s=1024x1024&w=is&k=20&c=OHSgYW73U8w43panHpiPKRZfK-WWz9xNs-zXkeNQzW4="
+             alt="Saloons">
+            <span>Saloons</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/512882668/photo/entering-hotel-room.jpg?s=1024x1024&w=is&k=20&c=YtR6tHqYS5-REFDl4n4plFgBmzIunWKem9SXgeqA4Ds="
+             alt="Hotel Rooms">
+            <span>Hotel Rooms</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/1364656744/photo/back-yard-with-two-lounge-chairs-and-swimming-pool.jpg?s=1024x1024&w=is&k=20&c=gco4ifogXa6Mhwi8M1YNSl0VYwe0PndgnJ4_l0442Ig=" 
+            alt="Swimming Pools">
+            <span>Swimming Pools</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/1428594094/photo/empty-coffee-shop-interior-with-wooden-tables-coffee-maker-pastries-and-pendant-lights.jpg?s=1024x1024&w=is&k=20&c=egoXSU9zUxqZw0Ggr77UQTNKbTCPnk49ITs2ezKtxaA=" 
+            alt="Cafes">
+            <span>Cafes</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/943685424/photo/decor-for-a-large-party-or-gala-dinner.jpg?s=1024x1024&w=is&k=20&c=KzSHMqhxjna37W3-VgVaHB7n150ZlPfX25Av-2EKrsI=" 
+            alt="Event Spaces">
+            <span>Event Spaces</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/1442148484/photo/3d-rendering-of-modern-suburban-house-in-the-garden.jpg?s=1024x1024&w=is&k=20&c=i8cd6RNJDjHiU3VGW5LbYxVZehRhZQXaiKrsayQB1l8=" 
+            alt="Houses">
+            <span>Houses</span>
+        </div>
+        <div class="category">
+            <img src="https://media.istockphoto.com/id/1394033419/photo/luxury-fashion-store-front-in-modern-shopping-mall.jpg?s=1024x1024&w=is&k=20&c=HURkv5x6Eo8LGAMUxgNnDtNU30yZ-w5tjSpX2y3MYZQ="
+             alt="Shops">
+            <span>Shops</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Playing Arenas <a href="#">View More</a></h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://i.dawn.com/primary/2023/10/6525ab0f34c5a.jpg" 
+                alt="Arena">
+                <div class="content">
+                    <h3>24/7 Cricket Arena</h3>
+                    <p>Address: Johar Town Lahore</p>
+                    <p>Time: 12 pm to 4 am</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJT6E6d_e03qKEK2b3t-0lNL7bQ1TXZJKwYw&s" 
+                alt="Arena">
+                <div class="content">
+                    <h3>3 star Cricket Arena</h3>
+                    <p>Address: PIA Road Lahore</p>
+                    <p>Time: 12 pm to 3 am</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvjqNOTC8uPiRskth5Fu4K8FrJmLKnE05yg&s" 
+                alt="Arena">
+                <div class="content">
+                    <h3>Galaxy Roof Top arena</h3>
+                    <p>Address: Gulshan Ravi Block D</p>
+                    <p>Time: 11 am to 2 am</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWEHKB_u0BItFtJKAnR7xGmstAvjxndOYwA&s" 
+                alt="Arena">
+                <div class="content">
+                    <h3>Sports Lounge</h3>
+                    <p>Address: Iqbal Town </p>
+                    <p>Time: 12 am to 1 am</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR3Qfp_oyy_PV76EPiULEIf0brLX_S_VP88w&s" 
+                alt="Arena">
+                <div class="content">
+                    <h3>Sports corner</h3>
+                    <p>Address: DHA Phase 3 Block B</p>
+                    <p>Time: 12 am to 2 am </p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            </div>
+            
+            </div>
+        </div
+        >
+    </div>
+
+    <div class="section">
+        <h2>Gyms <a href="#">View More</a></h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFPOCvpNwXWQFQYPWwla2Pwh8gmpOslm59A&s"
+                 alt="Gym">
+                <div class="content">
+                    <h3>Golden Gym Corner</h3>
+                    <p>Address: Park arab society Block A</p>
+                    <p>Time: 5 am to 11 pm</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_SR0KkZf-rkXNfzYGcwpXd7qvR81vJq-xZw&s" 
+                alt="Gym">
+                <div class="content">
+                    <h3>Hafiz Gym corner</h3>
+                    <p>Address: Kareem Block</p>
+                    <p>Time: 6 AM - 11 PM</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://static.wixstatic.com/media/1f6b39_99bbfab3b829450fa1e9123b47a7aff0~mv2.jpg/v1/fill/w_620,h_414,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/iron%20jungle%201_JPG.jpg"
+                 alt="Gym">
+                <div class="content">
+                    <h3>Gym Lounge</h3>
+                    <p>Address: DHA Phase 4 Block E</p>
+                    <p>Time: 24 Hours</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://cdn-images.cure.fit/www-curefit-com/image/upload/c_fill,w_375,q_auto:eco,dpr_2,f_auto,fl_progressive/v1/cult-media/v2web/centers/center_122_IMAGE_6f530a48-c484-4ea7-9b1a-2f1654978391.png"
+                 alt="Gym">
+                <div class="content">
+                    <h3>Asim Gym Corner</h3>
+                    <p>Address: Johar Town Phase 1 </p>
+                    <p>Time: 7 am - 12 am</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://gymnation.com/media/be1kbmw0/gymnation-al-ain.png" 
+                alt="Gym">
+                <div class="content">
+                    <h3>5 Star Gym Corner</h3>
+                    <p>Address: Maal Road Lahore</p>
+                    <p>Time: 6 AM - 10 PM</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Farm Houses <a href="#">View More</a></h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://venuehub.pk/wp-content/uploads/farm-hosues-in-dha-300x225.jpeg" 
+                alt="Farm House">
+                <div class="content">
+                    <h3>Raheem Farm House</h3>
+                    <p>Address: DHA Phase 6 Block A</p>
+                    <p>Time: Open 24 Hours</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://res.cloudinary.com/arkaa-consultants/image/upload/v1711650550/blogs/farm-houses-in-lahore/The-Farmhouse-Lahore.jpg" 
+                alt="Farm House">
+                <div class="content">
+                    <h3>MSM Farm House</h3>
+                    <p>Address: Park View society</p>
+                    <p>Time: Open 24 Hours</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.olx.com.pk/thumbnails/242895840-800x600.jpeg" 
+                alt="Farm House">
+                <div class="content">
+                    <h3>Rafiq Farm House</h3>
+                    <p>Address: Bahria Town Block F</p>
+                    <p>Time: Open 24 Hours</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCrTpXx_Av1l_2BjOgTl-0cbCfwokHpNK4Gw&s" 
+                alt="Farm House">
+                <div class="content">
+                    <h3>Siddique Janda Farm House</h3>
+                    <p>Address: State Life Housing Society</p>
+                    <p>Time: Open 24 Hours</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLShnO3SyaAEi_VQaIutwhTHQjrxNt5im8fw&s" 
+                alt="Farm House">
+                <div class="content">
+                    <h3>Al Noor Farm Houses</h3>
+                    <p>Address: Revenue Housing Society</p>
+                    <p>Time: Open 24 Hours</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Cafes <a href="#">View More</a></h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/de/12/af/arcadian-packages-mall.jpg" 
+                alt="Cafe">
+                <div class="content">
+                    <h3>Terrace Cafe</h3>
+                    <p>Address: Faisal Town Street 1</p>
+                    <p>Timing: 8 AM - 12 am</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/01/e6/71/78/innenansicht.jpg?w=600&h=400&s=1" 
+                alt="Cafe">
+                <div class="content">
+                    <h3>Garage Cafe</h3>
+                    <p>Address: LDA Avenue</p>
+                    <p>Timing: 9 AM - 11 PM</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/92/c8/62/cinnabon-gulberg-view.jpg?w=600&h=-1&s=1"
+                 alt="Cafe">
+                <div class="content">
+                    <h3>Coffee Planet</h3>
+                    <p>Address: Muslim Town Street 4</p>
+                    <p>Timing: 11 AM - 11 PM</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/93/8f/47/arcadian-gulberg-new.jpg?w=600&h=-1&s=1" 
+                alt="Cafe">
+                <div class="content">
+                    <h3>Cup Shup Cafe</h3>
+                    <p>Address: DHA Raya Main Boulevard</p>
+                    <p>Timing: 10 AM - 11 PM</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/27/fe/08/75/el-momento-steak-house.jpg?w=600&h=-1&s=1"
+                 alt="Cafe">
+                <div class="content">
+                    <h3>Cafe Fusion</h3>
+                    <p>Address: Jail Road</p>
+                    <p>Timing: 11 AM - 10 PM</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2> Guest Houses <a href="#">View More</a></h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/466216805.jpg?k=dd6c0ff3c039fe26632c399e049dbc1b21795c029c5bbcafc82df3b90e29ba20&o=&hp=1" 
+                alt="House">
+                <div class="content">
+                    <h3>Golden Pine Hotel</h3>
+                    <p>Address: Bahria Town Lahore</p>
+                    <p>Price: 5499 per night</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://q-xx.bstatic.com/xdata/images/hotel/max500/567733348.jpg?k=f24792c5ba60230d5a0a76387589903ff18e62705f91877d476b0290fd661061&o=" 
+                alt="House">
+                <div class="content">
+                    <h3>Lawrence Hotel</h3>
+                    <p>Address: Pine Avenue</p>
+                    <p>Price: 6799 per night</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/573854665.jpg?k=0c4f2e9fe16b9af64db9ccbf0734ae216c7d3fb618aaa1968036c20fe303781d&o=&hp=1" 
+                alt="House">
+                <div class="content">
+                    <h3>Royal Grand Hotel</h3>
+                    <p>Address: Barkat market</p>
+                    <p>Price: 11000 per night</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/262506435.jpg?k=52b306aa095ee942e5770285fe18e636f14f63a4f501d5a19ff5074f2808ae43&o=&hp=1" 
+                alt="House">
+                <div class="content">
+                    <h3>Royal Palace Hotel</h3>
+                    <p>Address: Gulberg Main  Boulevard</p>
+                    <p>Price: 12000 per night</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpJGefy9ARy7c7VQb9nPexeA5dxKD9qEUcFA&s" 
+                alt="House">
+                <div class="content">
+                    <h3>Visit In Hotel </h3>
+                    <p>Address: Defence Road</p>
+                    <p>Price: 8499 per night</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Shops <a href="#">View More</a></h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://lcci.pk/wp-content/uploads/2023/09/CAREFOUR-Heade-Image.jpg" 
+                alt="Shop">
+                <div class="content">
+                    <h3>Grocery Mart</h3>
+                    <p>Address: Barkat Market</p>
+                    <p>Category: Grocery</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwvG0YbIDQBpBPapQ3KBhub8LuVBAI-B8fEg&s" 
+                alt="Shop">
+                <div class="content">
+                    <h3>Shahid Electronics </h3>
+                    <p>Address: Hall Road Plaza number 2</p>
+                    <p>Category: Electronics</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtwxqUsPqlLuF621xNHUkZ7uR9WFONyB6MLQ&s"
+                 alt="Shop">
+                <div class="content">
+                    <h3>Limelight </h3>
+                    <p>Address: Gulberg </p>
+                    <p>Category: Clothing</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX84TThEkCk5Tto74uMrBycsCW-elrhMYJ4w&s" 
+                alt="Shop">
+                <div class="content">
+                    <h3>ZN Furniture</h3>
+                    <p>Address: Mian Plaza</p>
+                    <p>Category: Furniture</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxm1eAbfUbvtyk9dvcgOeYhl-czdetF4gEHg&s" 
+                alt="Shop">
+                <div class="content">
+                    <h3>Books & Books</h3>
+                    <p>Address: DHA phase 11 </p>
+                    <p>Category: Books</p>
+                    <div class="favorite"></div>
+                </div>
+            </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="section">
+            <h2>Saloons <a href="#">View More</a></h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUDAPacDgIyVXY51bUcvbcKwTpp_g44l70Ew&s" 
+                    alt="Saloon">
+                    <div class="content">
+                        <h3>Smart Cut Saloon</h3>
+                        <p>Address: Faisal Town</p>
+                        <p>Time: 10 AM - 10 PM</p>
+                        <div class="favorite"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3pQn041gstonC_VC_2fXcEFR8E6CoUPujKA&s" 
+                    alt="Saloon">
+                    <div class="content">
+                        <h3>Swag Saloon</h3>
+                        <p>Address: Shaukat Ali Road</p>
+                        <p>Time: 9 AM - 9 PM</p>
+                        <div class="favorite"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://res.cloudinary.com/liaison-inc/image/upload/c_fill,f_auto,q_auto/services/fash/backgrounds/hair-salon.jpg"
+                     alt="Saloon">
+                    <div class="content">
+                        <h3>Sahi's Saloon</h3>
+                        <p>Address: Ali Town Lahore</p>
+                        <p>Time: 10 AM - 10 PM</p>
+                        <div class="favorite"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP06Ys2gsNViN_awPcPFQeKhmjdRAy-zk4HQ&s" 
+                    alt="Saloon">
+                    <div class="content">
+                        <h3>Cutting Edge Saloon</h3>
+                        <p>Address: Moon Market</p>
+                        <p>Time: 10 AM - 11 PM</p>
+                        <div class="favorite"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg-0SYJaFYLts4iAhzFzzTh1wgS0l2X9MPAw&s" 
+                    alt="Saloon">
+                    <div class="content">
+                        <h3>Modish Saloon</h3>
+                        <p>Address: Defence Road Lahore</p>
+                        <p>Time: 10 AM - 9 PM</p>
+                        <div class="favorite"></div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Swimming Pools <a href="#">View More</a></h2>
+                <div class="cards">
+                    <div class="card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlh5xOAxozJE-hgpNAAtMrpRh-KXhfCHMX3Q&s "                 
+                          alt="Swimming Pools">
+                        <div class="content">
+                            <h3>Greenland Swimming Pool</h3>
+                            <p>Address: Faisal Town</p>
+                            <p>Time: 10 AM - 10 PM</p>
+                            <div class="favorite"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQaAQXHkPyG2GQDaNfysJFnrcmEjv3iFdWsQ&s"        
+                         alt="Swimming Pools">
+                        <div class="content">
+                            <h3>Swimming Lakes</h3>
+                            <p>Address: Shaukat Ali Road</p>
+                            <p>Time: 9 AM - 9 PM</p>
+                            <div class="favorite"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://res.cloudinary.com/liaison-inc/image/upload/c_fill,f_auto,q_auto/services/fash/backgrounds/hair-salon.jpg"
+                         alt="Swimming Pools">
+                        <div class="content">
+                            <h3>Sahi's Saloon</h3>
+                            <p>Address: Ali Town Lahore</p>
+                            <p>Time: 10 AM - 10 PM</p>
+                            <div class="favorite"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://www.swimminglearning.com/wp-content/uploads/2023/01/ABS-Wellness-Club.webp" 
+                        alt="Swimming Pools">
+                        <div class="content">
+                            <h3>Visit Inn Swimmin Pools</h3>
+                            <p>Address: Moon Market</p>
+                            <p>Time: 10 AM - 11 PM</p>
+                            <div class="favorite"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWInsWWbyyPtJ1XesOO3ovJ1hitNbsMoB8Dw&s             alt="Swimming Pools">
+                        <div class="content">
+                            <h3>SK Swimming Pools</h3>
+                            <p>Address: Defence Road Lahore</p>
+                            <p>Time: 10 AM - 9 PM</p>
+                            <div class="favorite"></div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+
+
+                <div class="section">
+                    <h2>Event Spaces <a href="#">View More</a></h2>
+                    <div class="cards">
+                        <div class="card">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh_FpfaZod6mxUYoIs0Sxkk6oEAgSRk0om6g&s"                 
+                              alt="Event Spaces">
+                            <div class="content">
+                                <h3>Tagline Event Spaces</h3>
+                                <p>Address: Faisal Town</p>
+                                <p>Time: 10 AM - 10 PM</p>
+                                <div class="favorite"></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBD6jiI1oe9z3C4YijGbXYNxwBdNtRdlgQag&s"        
+                             alt="Event Spaces">
+                            <div class="content">
+                                <h3>Firdous Event Spaces</h3>
+                                <p>Address: Shaukat Ali Road</p>
+                                <p>Time: 9 AM - 9 PM</p>
+                                <div class="favorite"></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZy3V1iYVHrcVUl-UGYgVZv20zwNx13_rGJQ&s"
+                             alt="Event Spaces">
+                            <div class="content">
+                                <h3>Johar Event Complex</h3>
+                                <p>Address: Ali Town Lahore</p>
+                                <p>Time: 10 AM - 10 PM</p>
+                                <div class="favorite"></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://static.giggster.com/media/activities/party/uploads/1708001685/1080.jpg" 
+                            alt="Event Spaces">
+                            <div class="content">
+                                <h3>Canal Orchid Event Complex</h3>
+                                <p>Address: Moon Market</p>
+                                <p>Time: 10 AM - 11 PM</p>
+                                <div class="favorite"></div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="https://images.squarespace-cdn.com/content/v1/60da576b8b440e12699c9263/ecf992ff-4de5-4a26-891a-2a3645dd75c4/ovation+1.jpg"           
+                             alt="Event Spaces">
+                            <div class="content">
+                                <h3>Event Avenue</h3>
+                                <p>Address: Defence Road Lahore</p>
+                                <p>Time: 10 AM - 9 PM</p>
+                                <div class="favorite"></div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+
+        </div>
+    
+
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+    <div style="background-color: #002855; color: white; padding: 30px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+            <!-- Trending Searches -->
+            <div style="flex: 1 1 200px; margin-bottom: 20px;">
+                <h3 style="font-size: 16px; color: #ff7f50;">Trending Searches</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="#" style="color: white; text-decoration: none;">Gyms near me</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Affordable Hotels</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Best Cafes</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Event Spaces for rent</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Swimming Pools nearby</a></li>
+                </ul>
+            </div>
+
+            <!-- About Us -->
+            <div style="flex: 1 1 200px; margin-bottom: 20px;">
+                <h3 style="font-size: 16px; color: #ff7f50;">About Us</h3>
+                <p style="font-size: 14px; line-height: 1.5;">
+                    SpotEase is your one-stop solution for finding and booking the best spots in your city. From gyms to arenas, we have everything you need.
+                </p>
+            </div>
+
+            <!-- Customer Support -->
+            <div style="flex: 1 1 200px; margin-bottom: 20px;">
+                <h3 style="font-size: 16px; color: #ff7f50;">Customer Support</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="#" style="color: white; text-decoration: none;">Help Center</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">FAQs</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Terms and Policies -->
+            <div style="flex: 1 1 200px; margin-bottom: 20px;">
+                <h3 style="font-size: 16px; color: #ff7f50;">Terms & Policies</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="#" style="color: white; text-decoration: none;">Terms of Use</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Privacy Policy</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none;">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 14px;">&copy; 2024 SpotEase. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

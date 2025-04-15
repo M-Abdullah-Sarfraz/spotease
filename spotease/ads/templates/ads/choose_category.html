@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Category</title>
+    <link rel="stylesheet" href="{% static 'css/choose_category.css' %}">
+   
+</head>
+<body>
+    <div class="header">
+        <a href="#">&#x2190;</a>
+        <h1>Post Your Ad</h1>
+    </div>
+
+    <div class="container">
+        <h2>Choose a category</h2>
+        <div class="grid">
+            <!-- Dynamic Links -->
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Playing Arena' %}">
+                    <img src="https://media.istockphoto.com/id/1961190002/vector/cricket-player-design-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=6VLswpuyDvogkCbJxaTTX4ZAWmHqHrMkshUnxpaEl1U=" alt="Playing Arena">
+                    <span>Playing Arena</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Gym' %}">
+                    <img src="https://media.istockphoto.com/id/625739874/photo/heavy-weight-exercise.jpg?s=1024x1024&w=is&k=20&c=VfIOadwMezHGKt_KXrh52rlcInKHtY-Ys07p1dHs2A8=" alt="Gym">
+                    <span>Gym</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Farm House' %}">
+                <img src="https://media.istockphoto.com/id/165174232/photo/farmland-with-farmhouse-and-grazing-cows-in-the-uk.jpg?s=1024x1024&w=is&k=20&c=O0g21Mqk_N0Jqxf1UBAjdQSBfKHl8aG_Ngl3zu7UsdU=" 
+                 alt="Farm House">
+                <span>Farm House</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Saloon' %}">
+                <img src="https://media.istockphoto.com/id/1423513079/photo/luxury-hairdressing-and-beauty-salon-interior-with-chairs-mirrors-and-spotlights.jpg?s=1024x1024&w=is&k=20&c=OHSgYW73U8w43panHpiPKRZfK-WWz9xNs-zXkeNQzW4="
+                 alt="Saloon">
+                <span>Saloon</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Hotel Room' %}">
+                <img src="https://media.istockphoto.com/id/512882668/photo/entering-hotel-room.jpg?s=1024x1024&w=is&k=20&c=YtR6tHqYS5-REFDl4n4plFgBmzIunWKem9SXgeqA4Ds="
+                 alt="Hotel Room">
+                <span>Hotel Room</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Swimming Pool' %}">
+                <img src="https://media.istockphoto.com/id/1364656744/photo/back-yard-with-two-lounge-chairs-and-swimming-pool.jpg?s=1024x1024&w=is&k=20&c=gco4ifogXa6Mhwi8M1YNSl0VYwe0PndgnJ4_l0442Ig=" 
+                 alt="Swimming Pool">
+                <span>Swimming Pool</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Cafe' %}">
+                <img src="https://media.istockphoto.com/id/1428594094/photo/empty-coffee-shop-interior-with-wooden-tables-coffee-maker-pastries-and-pendant-lights.jpg?s=1024x1024&w=is&k=20&c=egoXSU9zUxqZw0Ggr77UQTNKbTCPnk49ITs2ezKtxaA=" 
+                 alt="Cafe">
+                <span>Cafe</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Event Space' %}">
+                <img src="https://media.istockphoto.com/id/943685424/photo/decor-for-a-large-party-or-gala-dinner.jpg?s=1024x1024&w=is&k=20&c=KzSHMqhxjna37W3-VgVaHB7n150ZlPfX25Av-2EKrsI=" 
+                 alt="Event Space">
+                <span>Event Space</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'House' %}">
+                <img src="https://media.istockphoto.com/id/1442148484/photo/3d-rendering-of-modern-suburban-house-in-the-garden.jpg?s=1024x1024&w=is&k=20&c=i8cd6RNJDjHiU3VGW5LbYxVZehRhZQXaiKrsayQB1l8=" 
+                 alt="House">
+                <span>House</span>
+            </a>
+            </div>
+            <div class="grid-item">
+                <a href="{% url 'post_ad' 'Shops' %}">
+                <img src="https://media.istockphoto.com/id/1394033419/photo/luxury-fashion-store-front-in-modern-shopping-mall.jpg?s=1024x1024&w=is&k=20&c=HURkv5x6Eo8LGAMUxgNnDtNU30yZ-w5tjSpX2y3MYZQ="
+                 alt="Shops">
+                <span>Shops</span>
+            </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
