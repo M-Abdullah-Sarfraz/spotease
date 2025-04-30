@@ -128,9 +128,14 @@ USE_TZ = True
 import os
 from pathlib import Path
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/login/'
+
 
 # Add all your static directories here
 STATICFILES_DIRS = [

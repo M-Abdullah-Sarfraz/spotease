@@ -1,0 +1,54 @@
+<!-- spot_detail.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot Detail Page</title>
+    <link rel="stylesheet" href="{% static 'css/spot_detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span>SpotEase</span>
+        </div>
+
+        <div class="image-grid">
+            {% if spot.image %}
+                <img src="{{ spot.image.url }}" alt="{{ spot.title }}">
+            {% else %}
+                <img src="{% static 'images/default_image.jpg' %}" alt="No Image Available">
+            {% endif %}
+        </div>
+
+        <div class="details">
+            <p><strong>Name:</strong> {{ spot.title }}</p>
+            <p><strong>Category:</strong> {{ spot.category }}</p>
+            <p><strong>Location:</strong> {{ spot.location }}</p>
+            <p><strong>Price:</strong> {{ spot.price }}</p>
+            <p><strong>Description:</strong> {{ spot.description }}</p>
+        </div>
+
+        <div class="reservation-options">
+            <p><strong>Select Reservation Spot (Only Shows Available Spots Currently):</strong></p>
+            <input type="radio" name="reservation" value="1"> 23 April 2025 
+            <input type="radio" name="reservation" value="2"> 25 April 2025
+            <input type="radio" name="reservation" value="3"> 28 April 2025
+        </div>
+
+        <div class="container">
+            <div class="listed-by">
+                <p>Listed by</p>
+                <p>&#128100; {{ spot.user.username }}</p> <!-- Assuming the spot has a user (author) field -->
+                <button class="contact-button">Contact Number</button>
+            </div>
+        </div>
+
+        <div class="reserve-section">
+            <button class="reserve-button">Reserve your spot</button>
+        </div>
+    </div>
+</body>
+</html>

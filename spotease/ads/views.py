@@ -7,9 +7,9 @@ def post_ad(request, category):
         form = AdForm(request.POST, request.FILES)
         if form.is_valid():
             ad = form.save(commit=False)
-            ad.category = category
+            ad.category = request.user
             ad.save()
-            return redirect('choose_category')
+            return redirect('home')
     else:
         form = AdForm(initial={'category': category})
     return render(request, f'ads/post_ad/{category.lower().replace(" ", "_")}.html', {'form': form, 'category': category})
@@ -21,4 +21,6 @@ def choose_category(request):
 
 def ads_list(request):
     ads = Ad.objects.all()
+    print(ads)
     return render(request, 'ads/ads_list.html', {'ads': ads})
+

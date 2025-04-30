@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 CATEGORY_CHOICES = [
     ('Playing Arena', 'Playing Arena'),
@@ -14,6 +15,11 @@ CATEGORY_CHOICES = [
 ]
 
 class Ad(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE, 
+        default=1  # Assuming user with ID=1 exists as a default user
+    )
     title = models.CharField(max_length=255)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     description = models.TextField()

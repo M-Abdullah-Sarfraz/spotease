@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth import logout
 
 
 
@@ -73,7 +74,6 @@ def home_view(request):
     return render(request, 'accounts/home.html')  # Create a home.html template
 
 
-from django.contrib.auth import logout
 
 def logout_view(request):
     logout(request)

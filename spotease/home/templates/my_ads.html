@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Ads</h2>
+
+{% if ads %}
+    <div class="ads-list">
+        {% for ad in ads %}
+            <div class="ad-card">
+                <img src="{{ ad.image.url }}" alt="{{ ad.title }}">
+                <h3>{{ ad.title }}</h3>
+                <p>{{ ad.description }}</p>
+                <p><strong>Price:</strong> {{ ad.price }}</p>
+                <p><strong>Location:</strong> {{ ad.location }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>You have not posted any ads yet.</p>
+{% endif %}
+{% endblock %}

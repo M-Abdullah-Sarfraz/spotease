@@ -129,3 +129,51 @@
             text-align: center;
             font-size: 14px;
         }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          }
+          .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003466;
+            color: white;
+            padding: 10px 20px;
+          }
+          .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+          }
+          .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+          }
+          .nav a:hover {
+            text-decoration: underline;
+          }
+          .auth-buttons {
+            display: flex;
+            gap: 10px;
+          }
+          .auth-buttons button {
+            background-color: #e1ecf4;
+            border: 1px solid #7aa7c7;
+            color: #2c5877;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+          }
+          .auth-buttons button:hover {
+            background-color: #b3d3ea;
+          }
+
+          

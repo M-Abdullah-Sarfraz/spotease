@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - SpotEase</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003466;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
+    .right-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .post-button {
+      background: linear-gradient(135deg, #ff9800, #ffc107);
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .post-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .post-button:hover::before {
+      left: 100%;
+    }
+
+    .post-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(255, 193, 7, 0.4);
+    }
+
+    .profile-menu {
+      position: relative;
+    }
+
+    .profile-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: white;
+      color: #003466;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+
+    .profile-button:hover {
+      background-color: #f1f1f1;
+    }
+
+    .profile-avatar {
+      background-color: #003466;
+      color: white;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      background-color: white;
+      color: #333;
+      min-width: 180px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 999;
+      font-size: 14px;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid #eee;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f9f9f9;
+    }
+
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    /* Contact Page Styles */
+    .contact-hero {
+      padding: 60px 10%;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .contact-hero h1 {
+      font-size: 42px;
+      color: #003466;
+      margin-bottom: 20px;
+    }
+
+    .contact-hero p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    .contact-section {
+      padding: 60px 10%;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      background-color: #e9f2fb;
+    }
+
+    .contact-form, .contact-details {
+      width: 50%;
+    }
+
+    .contact-form h2, .contact-details h2 {
+      color: #003466;
+      margin-bottom: 20px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      background-color: #003466;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background-color: #00284d;
+    }
+
+    .contact-details p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .contact-details strong {
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #003466;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Stylish Header -->
+  <header class="header">
+    <div class="logo">SpotEase</div>
+    <nav class="nav">
+      <nav class="nav">
+        <a href="{% url 'home:home' %}">Home</a>
+        
+        <a href="{% url 'home:aboutus' %}">About Us</a>
+        <a href="{% url 'home:contactus' %}">Contact Us</a>
+        <a href="{% url 'login' %}"></a>
+    </nav>
+
+    <div class="right-buttons">
+        <!-- Stylish Post Button without JS -->
+        <a href="{% url 'choose_category' %}">
+            <button class="post-button">
+            + Post
+            </button>
+        </a>
+
+
+      <!-- Profile Button -->
+      <div class="profile-menu">
+        <button class="profile-button" onclick="toggleDropdown()">
+            <div class="profile-avatar">{{ user.username|slice:":1" }}</div> <!-- Display first letter of the name -->
+            <span id="username">{{ user.username }}</span>  <!-- Display the logged-in user's name -->
+        </button>
+        <div class="dropdown" id="profileDropdown">
+          <a href="{% url 'home:edit_profile' %}">Edit Profile</a>
+            <!-- <a href="#">Settings</a> -->
+            <a href="{% url 'home:my_ads' %}">My Ads</a>
+            <a href="{% url 'home' %}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Us Content -->
+  <section class="contact-hero">
+    <h1>Contact Us</h1>
+    <p>
+      We'd love to hear from you! Whether you have questions, suggestions, or need assistance with bookings — feel free to reach out to us.
+    </p>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-form">
+      <h2>Send us a message</h2>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- This will render the form fields -->
+        <button type="submit">Send Message</button>
+      </form>
+    <!-- </div>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div> -->
+
+    <div class="contact-details">
+      <h2>Get in Touch</h2>
+      <p>Email: support@spotease.com</p>
+      <p>Phone: +92 323 3679700</p>
+      <p>WhatsApp: +92 3344095579</p>
+
+      <strong>Office Address:</strong>
+      <p>Street 23 Main Bulevard,<br>Gulberg, Lahore, Pakistan</p>
+    </div>
+  </section>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profileDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.closest('.profile-button')) {
+        const dropdown = document.getElementById("profileDropdown");
+        if (dropdown && dropdown.style.display === "block") {
+          dropdown.style.display = "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
