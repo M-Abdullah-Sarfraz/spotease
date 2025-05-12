@@ -1,24 +1,131 @@
-# home/views.py
-
 from django.shortcuts import render, get_object_or_404, redirect
-from ads.models import Ad  
+from ads.models import AdPayment  # Use AdPayment model for ads and payment
 from .forms import ContactForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserChangeForm
 from django.contrib.auth import update_session_auth_hash
-from ads.models import Ad
+from .models import Reservation
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponse
+
+
+
 
 
 def home(request):
-    ads = Ad.objects.all()  # Query all ads from the ads database
-    return render(request, 'homelogin.html', {'ads': ads, 'user': request.user})  # Pass the logged-in user to the template
+    # Fetch all AdPayment objects (ads with payment details)
+    ads = AdPayment.objects.all()  
+    return render(request, 'homelogin.html', {'ads': ads, 'user': request.user})  
+
+def reserve_spot(request, spot_id):
+    # Get the ad spot the user is trying to reserve
+    spot = get_object_or_404(AdPayment, id=spot_id)
+
+    if request.method == 'POST':
+        # Get form data
+        name = request.POST.get('name')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        reservation_date = request.POST.get('reservation_date')
+        screenshot = request.FILES.get('screenshot')
+
+        # Validate that all required fields are provided
+        if not all([name, start_time, end_time, reservation_date, screenshot]):
+            messages.error(request, "All fields are required, including the screenshot.")
+            return render(request, 'reserve_spot.html', {'spot': spot})
+
+        try:
+            # Save the reservation
+            reservation = Reservation.objects.create(
+                user=request.user,  # Ensure the user is linked to the reservation
+                ad_payment=spot,
+                name=name,
+                start_time=start_time,
+                end_time=end_time,
+                reservation_date=reservation_date,
+                screenshot=screenshot,
+            )
+
+            messages.success(request, "Reservation saved successfully!")
+            return redirect('home:payment_success')
+
+        except Exception as e:
+            messages.error(request, f"Error occurred while saving reservation: {str(e)}")
+            return render(request, 'reserve_spot.html', {'spot': spot})
+
+    return render(request, 'reserve_spot.html', {'spot': spot})
+
+# booking success page
+def booking_success(request):
+    return render(request, 'booking_success.html')  
+
+
+
 
 def spot_detail(request, spot_id):
-    # Fetch the specific spot from the Ad model by its ID
-    spot = get_object_or_404(Ad, id=spot_id)
+    spot = get_object_or_404(AdPayment, id=spot_id)
+
+    if request.method == 'POST':
+        # Get user input from the first page (name, start time, end time, date)
+        name = request.POST.get('name')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        reservation_date = request.POST.get('reservation_date')
+
+        # Save these details temporarily, as they will be needed for the second step
+        request.session['reservation_data'] = {
+            'name': name,
+            'start_time': start_time,
+            'end_time': end_time,
+            'reservation_date': reservation_date,
+            'spot_id': spot_id
+        }
+
+        # Redirect to the next page (payment details page)
+        return redirect('home:payment-success', spot_id=spot_id)
+
     return render(request, 'spot_detail.html', {'spot': spot})
+
+def payment_details(request, spot_id):
+    # Get the ad spot the user is trying to reserve
+    ad = get_object_or_404(AdPayment, id=spot_id)
+
+    if request.method == 'POST':
+        # Retrieve form data
+        name = request.POST.get('name')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        reservation_date = request.POST.get('reservation_date')
+        screenshot = request.FILES.get('screenshot')  # Handle the screenshot upload
+
+        # Validate that all required fields are provided
+        if not all([name, start_time, end_time, reservation_date, screenshot]):
+            messages.error(request, "All fields are required, including the screenshot.")
+            return render(request, 'reserve_spot.html', {'ad': ad})  # Render the correct template
+
+        try:
+            # Save the reservation object with all the data
+            reservation = Reservation.objects.create(
+                ad_payment=ad,  # Link to the specific ad
+                name=name,
+                start_time=start_time,
+                end_time=end_time,
+                reservation_date=reservation_date,
+                screenshot=screenshot  # Save screenshot
+            )
+            messages.success(request, "Reservation saved successfully!")
+
+            # Redirect to success page
+            return redirect('home:payment_success')  # Redirect to payment success page
+
+        except Exception as e:
+            messages.error(request, f"Error occurred while saving reservation: {str(e)}")
+            return render(request, 'reserve_spot.html', {'ad': ad})
+
+    return render(request, 'reserve_spot.html', {'ad': ad})  # Render the form for reservation details
+
 
 def aboutus(request):
     return render(request, 'aboutus.html')
@@ -29,7 +136,7 @@ def contactus(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Your message has been sent successfully!")
-            return redirect('home')  # or you can redirect to a thank-you page
+            return redirect('home')  
         else:
             messages.error(request, "Please fix the errors in the form.")
     else:
@@ -43,54 +150,98 @@ def edit_profile(request):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # This keeps the user logged in after changing password
+            update_session_auth_hash(request, user)  
             messages.success(request, "Your profile was successfully updated!")
-            return redirect('edit_profile')  # Redirect to the edit profile page after successful update
+            return redirect('edit_profile')  
         else:
             messages.error(request, "Please correct the errors below.")
     else:
         form = CustomUserChangeForm(instance=request.user)
     return render(request, 'edit_profile.html', {'form': form})
 
-# My Ads View
+# My Ads View for a logged-in user
 def my_ads(request):
-    if request.user.is_authenticated:  # Ensure the user is logged in
-        ads = Ad.objects.filter(user=request.user)  # Filter ads posted by the logged-in user
+    if request.user.is_authenticated:  
+        ads = AdPayment.objects.filter(user=request.user)  # Fetch ads created by the logged-in user
         return render(request, 'my_ads.html', {'ads': ads})
     else:
-        # Redirect to login if user is not authenticated
         return redirect('login')
+
+
+
+def booking_status(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    ad = reservation.ad_payment  # Get the related ad (spot) information
+
+    return render(
+        request, 
+        'booking_status.html', 
+        {'reservation': reservation, 'ad': ad}
+    )
+
+def check_booking_status(request):
+    # Get the most recent reservation for the logged-in user
+    reservation = Reservation.objects.filter(user=request.user).latest('reservation_date')
+    return redirect('home:booking_status', reservation_id=reservation.id)
+
+
+# Admin view for accepting or rejecting a booking
+@staff_member_required
+def update_reservation_status(request, reservation_id, status):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
     
+    # Update the status of the reservation
+    if status not in ['pending', 'confirmed', 'rejected']:
+        messages.error(request, "Invalid status!")
+        return redirect('admin:app_reservation_change', reservation_id=reservation.id)
+    
+    reservation.status = status
+    reservation.save()
+
+    messages.success(request, f"Reservation status updated to {status.capitalize()}")
+    return redirect('home:booking_status', reservation_id=reservation.id)
 
 
 
+
+# Filtered views based on category
 def playing_arenas(request):
-    ads = Ad.objects.filter(category="Playing Arena")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Playing Arena")  # Use AdPayment model
     return render(request, 'playing_arenas.html', {'ads': ads})
+
 def gyms(request):
-    ads = Ad.objects.filter(category="Gym")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Gym")  # Use AdPayment model
     return render(request, 'gyms.html', {'ads': ads})
+
 def farm_house(request):
-    ads = Ad.objects.filter(category="Farm House")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Farm House")  # Use AdPayment model
     return render(request, 'farmhouse.html', {'ads': ads})
+
 def hotel_room(request):
-    ads = Ad.objects.filter(category="Hotel Room")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Hotel Room")  # Use AdPayment model
     return render(request, 'hotelrooms.html', {'ads': ads})
+
 def saloons(request):
-    ads = Ad.objects.filter(category="Saloon")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Saloon")  # Use AdPayment model
     return render(request, 'saloons.html', {'ads': ads})
+
 def swimming_pools(request):
-    ads = Ad.objects.filter(category="Swimming Pool")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Swimming Pool")  # Use AdPayment model
     return render(request, 'swimming_pools.html', {'ads': ads})
+
 def cafes(request):
-    ads = Ad.objects.filter(category="Cafe")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Cafe")  # Use AdPayment model
     return render(request, 'cafes.html', {'ads': ads})
+
 def event_space(request):
-    ads = Ad.objects.filter(category="Event Space")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Event Space")  # Use AdPayment model
     return render(request, 'event_spaces.html', {'ads': ads})
+
 def houses(request):
-    ads = Ad.objects.filter(category="House")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="House")  # Use AdPayment model
     return render(request, 'houses.html', {'ads': ads})
+
 def shops(request):
-    ads = Ad.objects.filter(category="Shop")  # Filter ads by category
+    ads = AdPayment.objects.filter(category="Shop")  # Use AdPayment model
     return render(request, 'shops.html', {'ads': ads})
+

@@ -1,13 +1,61 @@
-<!-- spot_detail.html -->
-{% load static %}
-
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spot Detail Page</title>
-    <link rel="stylesheet" href="{% static 'css/spot_detail.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reserve Your Spot</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .header {
+            background-color: #002f6c;
+            color: white;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .details {
+            margin-top: 20px;
+            border-top: 2px solid #ccc;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        .payment-details {
+            margin-top: 20px;
+            border-top: 2px solid #ccc;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        .reserve-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .reserve-button {
+            width: 100%;
+            padding: 12px;
+            background: #3103d4;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -15,40 +63,44 @@
             <span>SpotEase</span>
         </div>
 
-        <div class="image-grid">
-            {% if spot.image %}
-                <img src="{{ spot.image.url }}" alt="{{ spot.title }}">
-            {% else %}
-                <img src="{% static 'images/default_image.jpg' %}" alt="No Image Available">
-            {% endif %}
-        </div>
-
+        <!-- Spot Details -->
         <div class="details">
             <p><strong>Name:</strong> {{ spot.title }}</p>
-            <p><strong>Category:</strong> {{ spot.category }}</p>
             <p><strong>Location:</strong> {{ spot.location }}</p>
-            <p><strong>Price:</strong> {{ spot.price }}</p>
+            <p><strong>Price per hour:</strong> {{ spot.price }}</p>
             <p><strong>Description:</strong> {{ spot.description }}</p>
         </div>
 
-        <div class="reservation-options">
-            <p><strong>Select Reservation Spot (Only Shows Available Spots Currently):</strong></p>
-            <input type="radio" name="reservation" value="1"> 23 April 2025 
-            <input type="radio" name="reservation" value="2"> 25 April 2025
-            <input type="radio" name="reservation" value="3"> 28 April 2025
+        <!-- Payment Details -->
+        <div class="payment-details">
+            <h3>Payment Details</h3>
+            <p><strong>Account Holder:</strong> {{ spot.account_holder_name }}</p>
+            <p><strong>Account Number:</strong> {{ spot.account_number }}</p>
+            <p><strong>Bank:</strong> {{ spot.bank }}</p>
         </div>
 
-        <div class="container">
-            <div class="listed-by">
-                <p>Listed by</p>
-                <p>&#128100; {{ spot.user.username }}</p> <!-- Assuming the spot has a user (author) field -->
-                <button class="contact-button">Contact Number</button>
+        <!-- Reservation and Payment Form -->
+        <form action="{% url 'home:reserve_spot' spot.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Reservation Details -->
+            <h3>Reservation Details</h3>
+            <input type="text" name="name" placeholder="Your Name" style="width: 100%; padding: 10px; margin-bottom: 15px;" required>
+
+            <div style="display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+                <input type="time" name="start_time" placeholder="Start Time" style="width: 48%; padding: 10px;" required>
+                <input type="time" name="end_time" placeholder="End Time" style="width: 48%; padding: 10px;" required>
             </div>
-        </div>
 
-        <div class="reserve-section">
-            <button class="reserve-button">Reserve your spot</button>
-        </div>
+            <input type="date" name="reservation_date" style="width: 100%; padding: 10px; margin-bottom: 15px;" required>
+
+            <!-- Payment Screenshot Upload -->
+            <h3>Upload Payment Screenshot</h3>
+            <label for="screenshot">Upload Payment Screenshot</label>
+            <input type="file" name="screenshot" accept="image/*" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+
+            <button type="submit" class="reserve-button">Reserve your spot</button>
+        </form>
     </div>
 </body>
 </html>

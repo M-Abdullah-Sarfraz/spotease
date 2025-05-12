@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>payment Upload</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      padding: 40px 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #333333;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #555555;
+      margin-bottom: 10px;
+    }
+
+    .qr-code-section {
+      margin-bottom: 30px;
+    }
+
+    .qr-code-section img {
+      width: 150px;
+      height: 150px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    .qr-code-caption {
+      font-size: 14px;
+      color: #666666;
+    }
+
+    .qr-upload, .input-field, .dropdown {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 30px 0;
+    }
+
+    .post-button-container {
+      margin-top: 20px;
+    }
+
+    .post-button {
+      display: inline-block;
+      background-color: #002b5c;
+      color: #ffffff;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .post-button:hover {
+      background-color: #333333;
+    }
+  </style>
+</head>
+<body>
+   <div class="container">
+    <h1>Payment Details for {{ spot.name }}</h1>
+    <p>Location: {{ spot.location }}</p>
+    <p>Description: {{ spot.description }}</p>
+    <form method="POST" action="{% url 'payment-details' %}?ad_id={{ ad.id }}">
+
+        {% csrf_token %}
+        <div class="qr-code-section">
+            <h1>Bank Account Details</h1>
+            <img id="sadapay-preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5sMsMk1tNy6zk3WnMKGVFudJRTwWQT43jEQ&s" alt="Bank Account QR Code" />
+            
+            <input class="input-field" type="text" name="account_holder_name" placeholder="Account Holder Name" required />
+            <input class="input-field" type="text" name="account_number" placeholder="Account Number" required />
+            
+            <select class="dropdown" name="bank" required>
+                <option disabled selected>Select Bank</option>
+                <option value="Meezan">Meezan Bank</option>
+                <option value="HBL">Habib Bank Limited (HBL)</option>
+                <option value="UBL">United Bank Limited (UBL)</option>
+                <option value="MCB">MCB Bank</option>
+                <option value="Alfalah">Bank Alfalah</option>
+                <option value="Askari">Askari Bank</option>
+                <option value="Bank Al Habib">Bank Al Habib</option>
+                <option value="Bank Islami">Bank Islami</option>
+                <option value="Faysal Bank">Faysal Bank</option>
+                <option value="Allied Bank">Allied Bank</option>
+                <option value="JS Bank">JS Bank</option>
+                <option value="Jazzcash">Mobilink Microfinance Bank/ Jazzcash</option>
+                <option value="Easypaisa">Telenor Microfinance Bank/Easypaisa</option>
+                <option value="Sadapay">Sadapay</option>
+                <option value="NayaPay">NayaPay</option>
+            </select>
+        </div>
+    
+        <hr />
+        
+        <div class="post-button-container">
+            <button type="submit" class="post-button">Post Now</button>
+        </div>
+    </form>
+    
+    
+  </div>
+</body>
+</html>

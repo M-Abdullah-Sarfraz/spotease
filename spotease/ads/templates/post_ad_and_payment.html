@@ -1,0 +1,16 @@
+<!-- post_ad_and_payment.html -->
+{% extends 'base.html' %}
+
+{% block title %}Post Your Ad{% endblock %}
+
+{% block header %}Post Ad and Payment Details{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p }} <!-- Renders all fields -->
+    </div>
+    <button class="submit-btn" type="submit">Post Now</button>
+</form>
+{% endblock %}

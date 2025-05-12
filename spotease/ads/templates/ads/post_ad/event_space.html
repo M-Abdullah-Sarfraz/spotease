@@ -1,15 +1,40 @@
 {% extends 'base.html' %}
 
-{% block title %}Post Event Space Ad{% endblock %}
-
-{% block header %}Post Ad for Event Space{% endblock %}
+{% block title %}Post Cafe Ad{% endblock %}
 
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-group">
-        {{ form.as_p }}
+    <div class="category">
+        <img src="https://example.com/cafe-icon.png" alt="Cafe Category">
+        <span>Event Space</span>
     </div>
-    <button class="submit-btn" type="submit">Post Ad</button>
-</form>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Add Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            {{ form.price }}
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            {{ form.location }}
+        </div>
+
+        <div class="form-group">
+            <label for="image">Add Image</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
+
+        <button type="submit" class="submit-btn">Post Now</button>
+    </form>
 {% endblock %}

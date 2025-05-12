@@ -162,7 +162,7 @@
   </nav>
   <div class="right-buttons">
       <!-- Stylish Post Button without JS -->
-      <a href="{% url 'choose_category' %}">
+      <a href="{% url 'ads:choose_category' %}">
           <button class="post-button">
           + Post
           </button>
@@ -176,8 +176,8 @@
           </button>
           <div class="dropdown" id="profileDropdown">
             <a href="{% url 'home:edit_profile' %}">Edit Profile</a>
-              <!-- <a href="#">Settings</a> -->
-              <a href="{% url 'home:my_ads' %}">My Ads</a>
+            <a href="{% url 'home:check_booking_status' %}">Check Booking Status</a>
+            <a href="{% url 'home:my_ads' %}">My Ads</a>
               <a href="{% url 'home' %}">Logout</a>
           </div>
       </div>
@@ -198,9 +198,6 @@
             }
           }
         }
-    
-        // Dynamic username example
-        // document.getElementById("username").innerText = "Ali";
       </script>
 
     <div class="categories">

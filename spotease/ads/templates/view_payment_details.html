@@ -1,0 +1,27 @@
+<!-- payment_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details for Spot: {{ ad.title }}</title>
+</head>
+<body>
+    <h1>Payment Details for Spot: {{ ad.title }}</h1>
+    
+    {% if payment_details %}
+        <div class="payment-info">
+            <p><strong>Account Holder Name:</strong> {{ payment_details.account_holder_name }}</p>
+            <p><strong>Account Number:</strong> {{ payment_details.account_number }}</p>
+            <p><strong>Bank:</strong> {{ payment_details.bank }}</p>
+        </div>
+    {% else %}
+        <p>No payment details available for this spot.</p>
+    {% endif %}
+    
+    
+    <div>
+        <button>Confirm Payment</button>
+    </div>
+</body>
+</html>
