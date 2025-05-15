@@ -24,19 +24,18 @@ This project is a web application developed using Python and Django framework. I
    [git clone https://github.com/M-Abdullah-Sarfraz/spotease]
    cd spotease
    
-Create a virtual environment and activate it:
+2. Create a virtual environment and activate it:
+   python -m venv venv
+   source venv/bin/activate   # On Windows use: venv\Scripts\activate
 
-python -m venv venv
-source venv/bin/activate   # On Windows use: venv\Scripts\activate
+3. Install the required packages:
+   pip install -r requirements.txt
 
-Install the required packages:
+4. Apply migrations:
+   python manage.py makemigrations
+   python manage.py migrate
 
-pip install -r requirements.txt
+5. Run the development server:
+   python manage.py runserver
 
-Apply migrations:
-python manage.py makemigrations
-python manage.py migrate
-
-Run the development server:
-python manage.py runserver
-Open your browser and navigate to http://127.0.0.1:8000
+   Open your browser and navigate to http://127.0.0.1:8000
