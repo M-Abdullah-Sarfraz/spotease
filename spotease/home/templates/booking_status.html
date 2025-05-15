@@ -218,7 +218,7 @@
   
 </head>
 <body>
-    <!-- Booking Status Page Header -->
+
 <header class="header">
     <div class="logo">SpotEase</div>
     <nav class="nav">
@@ -227,7 +227,7 @@
         <a href="{% url 'home:contactus' %}">Contact Us</a>
     </nav>
     <div class="right-buttons">
-        <!-- Stylish Post Button without JS -->
+
         <a href="{% url 'ads:choose_category' %}">
             <button class="post-button">
             + Post
@@ -237,14 +237,14 @@
         <!-- Profile Button -->
         <div class="profile-menu">
             <button class="profile-button" onclick="toggleDropdown()">
-                <div class="profile-avatar">{{ user.username|slice:":1" }}</div> <!-- Display first letter of the name -->
-                <span id="username">{{ user.username }}</span>  <!-- Display the logged-in user's name -->
+                <div class="profile-avatar">{{ user.username|slice:":1" }}</div> 
+                <span id="username">{{ user.username }}</span>  
             </button>
             <div class="dropdown" id="profileDropdown">
               <a href="{% url 'home:edit_profile' %}">Edit Profile</a>
               <a href="{% url 'home:check_booking_status' %}">Check Booking Status</a>
               <a href="{% url 'home:my_ads' %}">My Ads</a>
-              <a href="{% url 'home' %}">Logout</a>  <!-- Make sure to use the correct logout URL -->
+              <a href="{% url 'home' %}">Logout</a>  
             </div>
         </div>
     </div>
@@ -283,26 +283,6 @@
       </div>
     </div>
 
-    <!-- {% if request.user.is_staff %}
-      <div class="admin-actions">
-        <h3>Admin Actions</h3>
-        <a href="{% url 'home:update_reservation_status' reservation.id 'confirmed' %}" class="btn">Confirm Booking</a>
-        <a href="{% url 'home:update_reservation_status' reservation.id 'rejected' %}" class="btn">Reject Booking</a>
-      </div>
-    {% endif %} -->
-  <!-- </div> -->
-<!-- 
-  <script>
-    function toggleDropdown() {
-      const dropdown = document.getElementById("profileDropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    window.onclick = function(e) {
-      if (!e.target.closest('.profile-button')) {
-        document.getElementById("profileDropdown").style.display = "none";
-      }
-    };
-  </script> -->
+    
 </body>
 </html>

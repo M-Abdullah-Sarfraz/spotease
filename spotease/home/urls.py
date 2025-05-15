@@ -3,7 +3,7 @@ from . import views
 from django.conf.urls.static import static
 
 
-app_name = 'home'  # Define the namespace for the 'home' app
+app_name = 'home'  
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -25,8 +25,7 @@ urlpatterns = [
     path('houses/', views.houses, name='houses'), 
     path('shops/', views.shops, name='shops'), 
     path('booking-success/', views.booking_success, name='booking_success'),
-    path('booking-status/<int:reservation_id>/', views.booking_status, name='booking_status'),
-    path('admin/update-reservation-status/<int:reservation_id>/<str:status>/', views.update_reservation_status, name='update_reservation_status'),
+    path('booking-status/<int:reservation_id>/', views.booking_status, name='booking_status'),  # Booking status page
     path('check-booking-status/', views.check_booking_status, name='check_booking_status'),
 
 

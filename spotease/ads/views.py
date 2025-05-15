@@ -1,16 +1,16 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import AdPaymentForm  # Import the new combined form
-from .models import AdPayment, Spot  # Corrected import to use AdPayment
+from .forms import AdPaymentForm  
+from .models import AdPayment, Spot  
 
-# Post ad and payment details on the same page
+
 def post_ad_and_payment(request, category):
     if request.method == 'POST':
         form = AdPaymentForm(request.POST, request.FILES)
         if form.is_valid():
-            # Save the combined form (ad and payment details)
+            
             form.save()
-            # Redirect to payment success page after form submission
+           
             return redirect('ads:post_success')
     else:
         form = AdPaymentForm()
@@ -28,9 +28,9 @@ def post_success(request):
 def choose_category(request):
     return render(request, 'ads/choose_category.html')
 
-# List all ads (no payment details needed here)
+# List all ads 
 def ads_list(request):
-    ads = AdPayment.objects.all()  # Use AdPayment model to fetch all ads
+    ads = AdPayment.objects.all()  
     return render(request, 'ads/ads_list.html', {'ads': ads})
 
 # Payment details function (not needed as it was handled in the form)

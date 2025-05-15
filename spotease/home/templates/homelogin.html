@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <style>
+  
   body {
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f9f9f9;
   }
+
+  /* Header Styling */
   .header {
     display: flex;
     justify-content: space-between;
@@ -22,20 +25,24 @@
     color: white;
     padding: 10px 20px;
   }
+
   .logo {
     font-size: 24px;
     font-weight: bold;
   }
+
   .nav {
     display: flex;
     align-items: center;
     gap: 20px;
   }
+
   .nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
   }
+
   .nav a:hover {
     text-decoration: underline;
   }
@@ -150,7 +157,112 @@
   .dropdown a:last-child {
     border-bottom: none;
   }
+
+  /* Categories Section */
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: white;
+  }
+
+  .categories .category {
+    text-align: center;
+    flex: 1 1 calc(20% - 20px);
+    max-width: 100px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .categories img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .categories span {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  /* Section Styling */
+  .section {
+    padding: 20px;
+  }
+
+  .section h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .section h2 a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #ff7f50;
+  }
+
+  /* Cards Layout */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .card {
+    background: white;
+    flex: 1 1 calc(20% - 20px);
+    max-width: calc(20% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .card .content {
+    padding: 10px;
+  }
+
+  .card .content h3 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .card .content p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #666;
+  }
+
+  .card .content .favorite {
+    text-align: right;
+    margin-top: 5px;
+  }
+
+  /* Footer Styling */
+  footer {
+    background-color: #002855;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  a{
+    text-decoration: none;
+    color: #60b4f0;
+  }
 </style>
+
 <body>
     <!-- Inside home.html -->
 <header class="header">
@@ -178,6 +290,7 @@
             <a href="{% url 'home:edit_profile' %}">Edit Profile</a>
             <a href="{% url 'home:check_booking_status' %}">Check Booking Status</a>
             <a href="{% url 'home:my_ads' %}">My Ads</a>
+              <a href="{% url 'admin:index' %}">Admin panel</a>
               <a href="{% url 'home' %}">Logout</a>
           </div>
       </div>
@@ -271,7 +384,7 @@
 
     <footer>
         <div>
-            <div>
+            <div class="foot">
                 <h3>Trending Searches</h3>
                 <ul>
                     <li><a href="#">Gyms near me</a></li>

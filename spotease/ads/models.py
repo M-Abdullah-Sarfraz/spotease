@@ -2,18 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
-CATEGORY_CHOICES = [
-    ('Playing Arena', 'Playing Arena'),
-    ('Gym', 'Gym'),
-    ('Farm House', 'Farm House'),
-    ('Saloon', 'Saloon'),
-    ('Hotel Room', 'Hotel Room'),
-    ('Swimming Pool', 'Swimming Pool'),
-    ('Cafe', 'Cafe'),
-    ('Event Space', 'Event Space'),
-    ('Shop', 'Shop'),
-    ('House', 'House'),
-]
 
 class AdPayment(models.Model):
     CATEGORY_CHOICES = [
@@ -75,7 +63,7 @@ class Spot(models.Model):
     def __str__(self):
         return self.name
 
-# Booking model (for user bookings)
+# Booking model 
 class Booking(models.Model):
     spot = models.ForeignKey('Spot', on_delete=models.CASCADE)  # Your Spot model
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # User who made the booking
